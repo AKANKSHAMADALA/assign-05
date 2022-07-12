@@ -16,7 +16,17 @@ def stuttering_words(text, word):
     Where the starting character of the word must have been typed many number of times.
     """
     special_words = []
+    # Write your implementation herespecial_words = []
     # Write your implementation here
+    x=re.sub('\W',' ',text)
+    y=re.split('\s',x)
+    for i in y:
+        a=re.search(word,i)
+        if a:
+            special_words.append(i)
+            
+
+  
 
     return special_words
 
