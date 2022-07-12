@@ -13,12 +13,12 @@ import unittest
 
 
 def count_word_occurances(sentense, word):
-    """ 
+    """
     Return the number of occurances of the given word in string s.
     The matches must not be substring of another word.
 
     e.g:
-    input: 
+    input:
     sentense = "Smart is not art. Art is not smart. Only Art is Art."
     word = 'Art'
 
@@ -35,18 +35,25 @@ def count_word_occurances(sentense, word):
     """
     count = 0
     # write you implementation here
-
+    l=[]
+    x=re.sub('\W',' ',sentense)
+    y=re.split(' ',x)
+    for i in y:
+        s=re.findall('^'+word,i)
+        if s:
+            l.append(s)
+    count=len(l)
     return count
 
 
 def word_occurances_ignore_case(sentense, word):
-    """ 
+    """
     Return the number of occurances of the given word in string s.
     Ignoring the case.
     The matches must not be substring of another word.
 
     e.g:
-    input: 
+    input:
     sentense = "Smart is not art. Art is not smart. Only Art is Art."
     word = 'ART'
 
@@ -56,8 +63,20 @@ def word_occurances_ignore_case(sentense, word):
     """
     all_words = []
     # write you implementation here
+    x=re.sub('\W',' ',sentense)
+    y=re.split('\s',x)
+    for i in y:
+        s=re.compile('^'+word+'$',re.IGNORECASE)
+        e=s.findall(i)
+        if e:
+            all_words.append(e[0])
+
 
     return all_words
+
+class Smart_artist(unittest.TestCase):
+    def smart_string(self):
+        return "Smart is not art. Art is not smart. Only Art is Art. Smart must not match for art. So this string about art contains 7 complete art words."
 
 class Smart_artist(unittest.TestCase):
     def smart_string(self):
